@@ -1,0 +1,72 @@
+<div class="card">
+  <h1>Create User</h1>
+  <hr />
+
+  <form (submit)="onSubmit($event)">
+    <input type="text" placeholder="enter name" [formField]="userForm.name" />
+
+    @if (userForm.name().touched() && userForm.name().invalid()) {
+      @for (error of userForm.name().errors(); track error.kind) {
+        <p class="error-tag">{{ error?.message }}</p>
+      }
+      <!--  -->
+    }
+
+      <input type="text" placeholder="enter email" [formField]="userForm.email" />
+
+      @if(userForm.email().touched() && userForm.email().invalid()){
+
+      @for(error of userForm.email().errors(); track error.kind){
+        <p class="error-tag">{{ error?.message }}</p>
+
+      }
+      }
+
+      <input type="number" placeholder="Enter number" [formField]="userForm.phone">
+
+
+      @if(userForm.phone().touched() && userForm.phone().invalid()){
+
+        @for(error of userForm.phone().errors();track error.kind){
+        <p class="error-tag">{{ error?.message }}</p>
+
+
+        }
+      }
+      
+      <input
+  type="text"
+  placeholder="Enter username"
+  [formField]="userForm.username"
+/>
+
+@if(userForm.username().touched() && userForm.username().invalid()) {
+  @for (error of userForm.username().errors(); track error.kind) {
+    <p class="error-tag">{{ error.message }}</p>
+  }
+}
+<input
+  type="text"
+  placeholder="Enter website"
+  [formField]="userForm.website"
+/>
+
+@if(userForm.website().touched() && userForm.website().invalid()) {
+  @for (error of userForm.website().errors(); track error.kind) {
+    <p class="error-tag">{{ error.message }}</p>
+  }
+}
+
+<hr>
+
+<div class="form-footer">
+    <button>
+create
+</button>
+
+
+</div>
+
+
+  </form>
+</div>

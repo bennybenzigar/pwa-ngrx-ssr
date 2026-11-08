@@ -10,7 +10,13 @@ import { join } from 'node:path';
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
-const angularApp = new AngularNodeAppEngine();
+console.log('MY CUSTOM SSR SERVER FILE IS RUNNING');
+const angularApp = new AngularNodeAppEngine({
+  allowedHosts: [
+    'localhost',
+    '127.0.0.1',
+  ],
+});
 
 /**
  * Example Express Rest API endpoints can be defined here.
@@ -39,14 +45,14 @@ app.use(
  * Handle all other requests by rendering the Angular application.
  */
 app.use((req, res, next) => {
-  angularApp
-    .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
+  console.log('SSR REQUEST RECEIVED:', req.method, req.url);
+
+  angularApp.handle(req)
+    .then(response =>
+      response ? writeResponseToNodeResponse(response, res) : next()
     )
     .catch(next);
 });
-
 /**
  * Start the server if this module is the main entry point, or it is ran via PM2.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.

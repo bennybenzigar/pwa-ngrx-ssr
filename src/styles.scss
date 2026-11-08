@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+button{
+    cursor: pointer;
+    padding: 8px 10px;
+    background-color: blueviolet;
+    margin: 10px;
+    border-radius: 6px;
+    color: whitesmoke;
+    box-shadow:  0 4px 12px rgba(0, 0, 0, 0.15);;
+
+
+}
+
+input{
+    padding: 10px ;
+    border-radius: 6px;
+    cursor: pointer;
+}

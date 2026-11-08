@@ -1,0 +1,67 @@
+<div class="title-bar">
+<h1>User Management
+</h1>
+
+<div>
+    <button routerLink="/create-user">+ Add User</button>
+</div>
+</div>
+
+
+
+<div>
+
+    <h3>Total user:{{store.totalUsers()}}</h3>
+
+
+    <input #searchInput type="text" (input)="store.setSearch(searchInput.value)">
+
+
+    <button (click)="store.clearSearch();searchInput.value=''">
+        clear
+    </button>
+
+    <button [disabled]="store.loading()" (click)="store.loadUsers()">
+
+        Refresh
+
+    </button>
+
+    @if(store.loading()){
+<p>Loading users...</p>
+    }
+    @if(store.error();as error){
+
+        <p>{{error}}</p>
+    }
+
+    @if(!store.loading() && !store.error()){
+
+        <div>
+
+            @for(user of store.filteredUsers(); track user.id){
+
+                <div class="card" [routerLink]="['/user-details',user.id]">
+
+                    <h3>
+                    {{user.name}}
+
+
+                </h3>
+
+                <p>{{user.email}}</p>
+                <p>{{user.phone}}</p>
+                <p>{{user.website}}</p>
+
+                </div>
+                
+
+            }
+        </div>
+
+    }
+
+</div>
+<app-stacked-clustered-column-chart
+  [config]="userChartConfig()"
+/>

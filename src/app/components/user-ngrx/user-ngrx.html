@@ -1,0 +1,61 @@
+@if(userResource.isLoading()){
+
+    <p>Loading user</p>
+}
+
+@if(userResource.error()){
+
+    <p>{{userResource.error()}}</p>
+}
+
+@if(userResource.hasValue()){
+      @for (user of userResource.value(); track user.id) {
+    <div (click)="switchUser(user.id)">
+      <h3>{{ user.name }}</h3>
+      <p>{{ user.email }}</p>
+    </div>
+  }
+}
+
+
+
+
+<!--  -->
+
+<button >
+ 
+</button>
+@if(singleUserResource.isLoading()){
+<p>Loading...</p>
+}
+
+@if(singleUserResource.error()){
+    <p>error occured</p>
+}
+
+@if(singleUserResource.hasValue()){
+
+    <h1>{{singleUserResource.value().name}}</h1>
+        <h1>{{singleUserResource.value().email}}</h1>
+
+}
+
+
+@switch(status()){
+    @case('pending'){
+
+        <p>Pending</p>
+    }
+
+    @case('rejected'){
+        <p>Rejected</p>
+    }
+    @case ('appproved'){
+        <p>Approved</p>
+    }
+
+    @default { never
+}
+}
+
+<button (click)="changeStatus()">change switch</button>

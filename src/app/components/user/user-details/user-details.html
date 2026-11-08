@@ -1,0 +1,24 @@
+<h3>User Details</h3>
+
+@if(store?.selectedUser(); as user){
+
+    <div class="card">
+        <p>{{user.name}}</p>
+        <hr>
+    <p>{{user.email}}</p>
+    <p>{{user.phone}}</p>
+    <p>{{user.username}}</p>
+    <hr>
+    <p>{{user.website}}</p>
+
+
+    </div>
+    
+}
+@else if (store.loading()) {
+    <p>Loading data ...</p>
+}
+@else {
+
+    <p>No data found</p>
+}
